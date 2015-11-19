@@ -1,7 +1,7 @@
 {namespace coleslaw.theme.bootstrap}
 
 {template index}
-<h1 class="page-header">{$index.title}</h1>
+<p class="lead">{$index.title}</p>
 {foreach $obj in $index.content}
   <div class="row-fluid">
     <h1><a href="{$config.domain}/{$obj.url}">{$obj.title}</a></h1>
