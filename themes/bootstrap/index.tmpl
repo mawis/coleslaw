@@ -1,38 +1,42 @@
 {namespace coleslaw.theme.bootstrap}
 
 {template index}
-<h1 class="page-header">{$index.title}</h1>
+<p class="lead">{$index.title}</p>
 {foreach $obj in $index.content}
-  <div class="row-fluid">
+<article itemscope="" itemtype="http://schema.org/BlogPosting" class="row-fluid">
+  <header>
     <h1><a href="{$config.domain}/{$obj.url}">{$obj.title}</a></h1>
-    <p class="date-posted">posted on {$obj.date}</p>
-    {$obj.text |noAutoescape}
-  </div>
+    <p class="date-posted">posted on <time itemprop="datePublished" datetime="{$obj.date}">{$obj.date}</time></p>
+  </header>
+  {$obj.text |noAutoescape}
+</article>
 {/foreach}
-<div id="relative-nav">
-  <ul class="pager">
-    {if $prev} <li class="previous"><a href="{$config.domain}/{$prev.url}">Previous</a></li> {/if}
-    {if $next} <li class="next"><a href="{$config.domain}/{$next.url}">Next</a></li> {/if}
-  </ul>
-</div>
-{if $tags}
-<div class="row-fluid">
-  <p>This blog covers
-    {foreach $tag in $tags}
+<footer>
+  <div id="relative-nav">
+    <ul class="pager">
+      {if $prev} <li class="previous"><a href="{$config.domain}/{$prev.url}">Previous</a></li> {/if}
+      {if $next} <li class="next"><a href="{$config.domain}/{$next.url}">Next</a></li> {/if}
+    </ul>
+  </div>
+  {if $tags}
+  <div class="row-fluid">
+    <p>This blog covers
+      {foreach $tag in $tags}
       <a href="{$config.domain}/{$tag.url}">{$tag.name}</a>{nil}
       {if not isLast($tag)},{sp}{/if}
-    {/foreach}
-  </p>
-</div>
-{/if}
-{if $months}
-<div class="row-fluid">
-  <p>View content from
-    {foreach $month in $months}
+      {/foreach}
+    </p>
+  </div>
+  {/if}
+  {if $months}
+  <div class="row-fluid">
+    <p>View content from
+      {foreach $month in $months}
       <a href="{$config.domain}/{$month.url}">{$month.name}</a>{nil}
       {if not isLast($month)},{sp}{/if}
-    {/foreach}
-  </p>
-</div>
+      {/foreach}
+    </p>
+  </div>
+</footer>
 {/if}
 {/template}
