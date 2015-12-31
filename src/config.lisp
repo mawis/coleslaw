@@ -2,6 +2,7 @@
 
 (defclass blog ()
   ((author          :initarg :author         :reader author)
+   (description     :initarg :description    :reader description)
    (charset         :initarg :charset        :reader charset)
    (deploy-dir      :initarg :deploy-dir     :reader deploy-dir)
    (domain          :initarg :domain         :reader domain)
@@ -18,6 +19,7 @@
    (theme           :initarg :theme          :reader theme)
    (title           :initarg :title          :reader title))
   (:default-initargs
+   :description  nil
    :feeds        nil
    :license      nil
    :plugins      nil
