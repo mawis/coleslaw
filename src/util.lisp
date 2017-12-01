@@ -1,5 +1,25 @@
 (in-package :coleslaw)
 
+
+(define-condition coleslaw-condition ()
+  ())
+
+(define-condition field-missing (error coleslaw-condition)
+  ((field-name :initarg :field-name :reader missing-field-field-name)
+   (file :initarg :file :reader missing-field-file
+         :documentation "The path of the file where the field is missing."))
+  (:report
+   (lambda (c s)
+     (format s "~A: The required field ~A is missing."
+             (missing-field-file c)
+             (missing-field-field-name c)))))
+
+(defmacro assert-field (field-name content)
+  `(when (not (slot-boundp ,content ,field-name))
+     (error 'field-missing
+            :field-name ,field-name
+            :file (content-file ,content))))
+
 (defun construct (class-name args)
   "Create an instance of CLASS-NAME with the given ARGS."
   (apply 'make-instance class-name args))
@@ -70,6 +90,10 @@ If ARGS is provided, use (fmt path args) as the value of PATH."
 (defun app-path (path &rest args)
   "Return a relative path beneath coleslaw."
   (apply 'rel-path coleslaw-conf:*basedir* path args))
+
+(defun repo-path (path &rest args)
+  "Return a relative path beneath the repo being processed."
+  (apply 'rel-path (repo-dir *config*) path args))
 
 (defun run-program (program &rest args)
   "Take a PROGRAM and execute the corresponding shell command. If ARGS is provided,

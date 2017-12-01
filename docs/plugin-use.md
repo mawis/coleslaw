@@ -14,12 +14,33 @@
 
 **Example**: `(analytics :tracking-code "google-provided-unique-id")`
 
+## Analytics via Piwik
+
+**Description**: Provides traffic analysis through
+  [Piwik](https://www.piwik.org).
+
+**Example**: `(piwik :piwik-url "piwik.example.com" :piwik-site "example-site")`
+
+## CL-WHO
+
+**Description**: Allows the user to write posts cl-who markup. Just create a
+post with `format: cl-who` and the plugin will do the rest.
+
+**Example**: (cl-who)
+
 ## Comments via Disqus
 
 **Description**: Provides comment support through
   [Disqus](http://www.disqus.com/).
 
 **Example**: `(disqus :shortname "disqus-provided-unique-id")`
+
+## Comments via isso
+
+**Description**: Provides comment support through
+  [isso](https://posativ.org/isso/).
+
+**Example**: `(isso :isso-url "your-isso-url")`
 
 ## HTML5 Gifs via Gfycat
 
@@ -71,7 +92,7 @@
   posts.  Default value is `nil`.
 
 - `:location` specifies the location of the `MathJax.js` file.  The
-  default value is `"http://cdn.mathjax.org/mathjax/latest/MathJax.js"`.
+  default value is `"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"`.
   This is useful if you have a local copy of MathJax and want to use that
   version.
 
@@ -188,3 +209,23 @@ CL-USER> (chirp:complete-authentication "4173325")
                       :output "/home/redlinernotes/blog/")`
 
 [config_file]: http://github.com/redline6561/coleslaw/blob/master/examples/example.coleslawrc
+
+
+## Markdown Embeding youtube Youtube
+
+**Description**: Embed youtube videos in markdown using the shorthand syntax
+`!yt[<video-id>(|options*)*]`.  Options can be *width*, *height* or any of the
+[player parameters](https://developers.google.com/youtube/player_parameters).
+
+For example `!yt[oeul8fTG9dM|width=480,allowfullscreen]`.
+
+**Example**: `(3bmd-youtube)`
+
+## Code Highlighting via Pygments
+
+**Description**: Provides code highlighting with [Pygments](http://pygments.org/)
+  instead of [colorize](http://www.cliki.net/colorize). Pygments supports over
+  300 languages and text formats. Look at
+  [3bmd](https://github.com/3b/3bmd/blob/master/README.md) for more info.
+
+**Example**: `(pygments)`

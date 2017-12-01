@@ -6,6 +6,7 @@
    (charset         :initarg :charset        :reader charset)
    (deploy-dir      :initarg :deploy-dir     :reader deploy-dir)
    (domain          :initarg :domain         :reader domain)
+   (excerpt-sep     :initarg :excerpt-sep    :reader excerpt-sep)
    (feeds           :initarg :feeds          :reader feeds)
    (lang            :initarg :lang           :reader lang)
    (license         :initarg :license        :reader license)
@@ -24,6 +25,7 @@
    :license      nil
    :plugins      nil
    :sitenav      nil
+   :excerpt-sep  "<!--more-->"
    :charset      "UTF-8"
    :lang         "en"
    :page-ext     "html"
@@ -51,7 +53,9 @@
 (defun enable-plugin (name args)
   "Given a plugin, NAME, compile+load it and call its ENABLE function with ARGS."
   (flet ((plugin-path (sym)
-           (app-path "plugins/~(~A~)" sym))
+           (if (probe-file (repo-path "plugins/~(~A~).lisp" sym))
+               (repo-path "plugins/~(~A~)" sym)
+               (app-path "plugins/~(~A~)" sym)))
          (plugin-package (sym)
            (format nil "~:@(coleslaw-~A~)" sym)))
     (let ((file (plugin-path name)))

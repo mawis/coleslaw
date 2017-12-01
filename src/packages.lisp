@@ -5,7 +5,7 @@
                             #:make-keyword
                             #:mappend)
   (:import-from :cl-fad #:file-exists-p)
-  (:import-from :cl-ppcre #:scan-to-strings)
+  (:import-from :cl-ppcre #:scan-to-strings #:split)
   (:import-from :closure-template #:compile-template)
   (:import-from :local-time #:format-rfc1123-timestring)
   (:import-from :uiop #:getcwd
@@ -13,6 +13,14 @@
   (:export #:main
            #:preview
            #:*config*
+           ;; Config Accessors
+           #:author
+           #:deploy-dir
+           #:domain
+           #:page-ext
+           #:repo-dir
+           #:staging-dir
+           #:title
            ;; Core Classes
            #:content
            #:post
@@ -38,4 +46,7 @@
            #:add-document
            #:delete-document
            #:write-document
-           #:content-text))
+           #:content-text
+
+	   ;; Error reporting
+           #:assert-field))

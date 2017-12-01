@@ -25,7 +25,7 @@ Have questions? Come talk to us on IRC in **#coleslaw** on Freenode!
   * Static Pages
   * Sitemap generation
   * Incremental builds
-  * Analytics via Google
+  * Analytics via Google or [Piwik](http://www.piwik.org)
   * Comments via [Disqus](http://disqus.com/) or [isso](http://posativ.org/isso)
   * Hosting via [Github Pages](https://pages.github.com/) or [Amazon S3](http://aws.amazon.com/s3/)
   * Embedding [gfycats](http://gfycat.com/)
@@ -33,6 +33,7 @@ Have questions? Come talk to us on IRC in **#coleslaw** on Freenode!
   * Using LaTeX via [Mathjax](http://mathjax.org/)
   * Writing posts in ReStructured Text
   * Importing posts from [Wordpress](http://wordpress.org/)
+  * Code Highlighting via [Pygments](http://pygments.org/) instead of [colorize](http://www.cliki.net/colorize)
 
 ## Example Sites
 
@@ -101,6 +102,7 @@ title: foo
 tags: bar, baz
 date: yyyy-mm-dd hh:mm:ss
 format: html (for raw html) or md (for markdown)
+excerpt: Can also be extracted from content (see :excerpt-sep config param)
 ;;;;;
 your post
 ```
